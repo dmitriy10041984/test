@@ -1,0 +1,151 @@
+{% extends 'blog/base.html' %}
+{% load staticfiles %}
+{% load bootstrap3 %}
+
+{# просто заполняем блоки #}
+{% block title %}
+    Список заявок
+{% endblock %}
+
+
+{% block bootstrap3_content %}
+    <h1 class="text-center text-success style-text-list">
+        Список заявок клиентов. Текущая дата:     {% now "d.m.Y" %}
+    </h1>
+    <table class="table table-hover table-bordered table-condensed">
+        <caption>
+            {% bootstrap_label "Заявки лабораторий:" %}
+        </caption>
+        <thead>
+            <tr>
+                <th>
+                    №
+                </th>
+                <th>
+                    № заявки
+                </th>
+                <th>
+                    Наименование лаборатории
+                </th>
+                <th>
+                    Категория товара
+                </th>
+                 <th>
+                    Фамилия клиента
+                </th>
+                <th>
+                    Дата создания
+                </th>
+                <th>
+                    Дата изменения
+                </th>
+                <th>
+                    Дата удаления
+                </th>
+            </tr>
+        </thead>
+        {% for laboratory in laboratories %}
+          <tr>
+            <td>
+              {{ forloop.counter }}
+            </td>
+            <td>
+              {{ laboratory.number_of_request}}
+            </td>
+            <td>
+              {{ laboratory.laboratory_title}}
+            </td>
+            <td>
+              {{ laboratory.category|lower}}
+            </td>
+            <td>
+              {{ laboratory.client|upper}}
+            </td>
+
+            <td>
+              {{ laboratory.create_request|date:"H:i  d.m.Y"}}
+            </td>
+            <td>
+              {{ laboratory.modify_request|date:"H:i  d.m.Y"}}
+            </td>
+            <td>
+              {{ laboratory.delete_request|date:"H:i  d.m.Y"}}
+            </td>
+          </tr>
+        {% empty %}
+            <p class="label label-important">
+                Список заявок лабораторий пуст
+            </p>
+        {% endfor %}
+
+    </table>
+
+
+
+    <table class="table table-hover table-bordered table-condensed">
+        <caption>
+            {% bootstrap_label "Заявки медицинских центров:" %}
+        </caption>
+        <thead>
+            <tr>
+                <th>
+                    №
+                </th>
+                <th>
+                    № заявки
+                </th>
+                <th>
+                    Наименование лаборатории
+                </th>
+                <th>
+                    Категория товара
+                </th>
+                 <th>
+                    Фамилия клиента
+                </th>
+                <th>
+                    Дата создания
+                </th>
+                <th>
+                    Дата изменения
+                </th>
+                <th>
+                    Дата удаления
+                </th>
+            </tr>
+        </thead>
+        {% for medcenter in medcenters %}
+          <tr>
+            <td>
+              {{ forloop.counter }}
+            </td>
+            <td>
+              {{ medcenter.number_of_request}}
+            </td>
+            <td>
+              {{ medcenter.medcenter_title}}
+            </td>
+            <td>
+              {{ medcenter.category|lower}}
+            </td>
+            <td>
+              {{ medcenter.client|upper}}
+            </td>
+            <td>
+              {{ medcenter.create_request|date:"H:i  d.m.Y"}}
+            </td>
+            <td>
+              {{ medcenter.modify_request|date:"H:i  d.m.Y"}}
+            </td>
+            <td>
+              {{ medcenter.delete_request|date:"H:i  d.m.Y"}}
+            </td>
+          </tr>
+        {% empty %}
+            <p class="label label-important">
+                Список заявок медцентров пуст
+            </p>
+        {% endfor %}
+
+    </table>
+{% endblock %}

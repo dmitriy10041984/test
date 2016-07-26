@@ -1,0 +1,18 @@
+{% extends 'blog/base.html' %}
+{# просто заполняем блоки #}
+{% block title %}
+    {{ article.title }}
+{% endblock %}
+
+{% block content %}
+    <h1>
+        {{ article.title }}
+    </h1>
+        <pre>
+            {{ article.text }}
+        </pre>
+
+            <a class="btn btn-info" href="{% url 'home' %}">
+                <p> HOME</p>
+            </a>
+{% endblock %}
